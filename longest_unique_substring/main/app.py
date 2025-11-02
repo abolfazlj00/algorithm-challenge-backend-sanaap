@@ -9,6 +9,20 @@ def longest_unique_substring(input_string: str) -> str:
     Returns:
         str: The longest substring that contains no repeated characters.
     """
+    
+    seen = set()
+    start = 0
+    max_len = 0
+
+    for end_index, end in enumerate(input_string):
+        while end in seen:
+            seen.remove(input_string[start])
+            start += 1
+        seen.add(end)
+        max_len = max(max_len, end_index - start + 1)
+
+    return max_len
+        
 
 if __name__ == "__main__":
     while True:

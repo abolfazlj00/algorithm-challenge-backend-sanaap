@@ -13,6 +13,17 @@ def has_n_consecutive_ones_circular(binary_str: str, n: int) -> bool:
     Raises:
         ValueError: If n < 1, or binary_str contains characters other than '0' and '1'.
     """
+    if n < 1:
+        raise ValueError("n must be >= 1")
+    if any(ch not in {"0", "1"} for ch in binary_str):
+        raise ValueError("binary_str must contain only '0' and '1' characters")
+
+    if n > len(binary_str):
+        return False
+
+    circular = binary_str + binary_str
+    target = "1" * n
+    return target in circular
 
 if __name__ == "__main__":
     while True:
